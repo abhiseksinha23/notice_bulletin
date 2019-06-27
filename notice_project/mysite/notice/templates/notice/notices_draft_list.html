@@ -1,0 +1,11 @@
+{% extends 'notice/base.html' %}
+
+{% block content %}
+    {% for notice in notices %}
+        <div class="post">
+            <p class="date">created: {{ notice.created_date|date:'d-m-Y' }}</p>
+            <h1><a href="{% url 'notices_detail' pk=notice.pk %}">{{ notice.title }}</a></h1>
+            <p>{{ notice.text|truncatechars:200 }}</p>
+        </div>
+    {% endfor %}
+{% endblock %}

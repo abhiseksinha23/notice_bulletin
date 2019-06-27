@@ -1,0 +1,21 @@
+{% extends 'notice/base.html' %}
+
+{% block content %}
+
+
+        <h1 class='noticetitle loader'>Subject : {{ queries.subject }}</h1>
+      <h2>  <p class='postcontent' >Asked by : {{ queries.author }}</p>
+        <p class='postcontent' >Registration ID : {{ queries.regno }}</p>
+        <p class='postcontent' >Email :{{ queries.email }}</p>
+        <p class='postcontent' >Phone No. :{{ queries.contact }}</p>
+
+      <p class='postcontent' >Details : {{ queries.text|safe|linebreaksbr }}</p></h2>
+
+
+      {% if user.is_authenticated %}
+      <a class="btn btn-warning" href="www.gmail.com">Reply it on Gmail</a>
+          <a class="btn btn-primary" href="{% url 'queries_remove' pk=queries.pk %}"><span class="glyphicon glyphicon-remove"></span></a>
+      {% endif %}
+
+
+{% endblock %}

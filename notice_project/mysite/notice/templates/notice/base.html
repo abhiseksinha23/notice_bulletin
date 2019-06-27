@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+{% load staticfiles%}
+<html lang="en" dir="ltr">
+  <head>
+    <meta charset="utf-8">
+    <title>NOTICE BULLETIN</title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap-theme.min.css" integrity="sha384-rHyoN1iRsVXV4nD0JutlnGaslCJuC7uwjduW9SVrLvRYooPp2bWYgmgJQIXwl/Sp" crossorigin="anonymous">
+
+    <script src="//cdn.jsdelivr.net/medium-editor/latest/js/medium-editor.min.js"></script>
+    <link rel="stylesheet" href="//cdn.jsdelivr.net/medium-editor/latest/css/medium-editor.min.css" type="text/css" media="screen" charset="utf-8">
+
+      <link rel="stylesheet" href="{% static 'css/notice.css' %}">
+    <link href="https://fonts.googleapis.com/css?family=Montserrat|Russo+One" rel="stylesheet">
+  </head>
+<body class='loader' style="background:#FFB6C1;">
+
+
+      <nav class="navbar navbar-expand-sm techfont bg-dark" style="background-color: black;">
+        <div class="container">
+
+
+          <ul class="nav navbar-nav">
+            <li><a class='navbar-brand bigbrand' href="{% url 'notices_list' %}">NOTICES</a></li>
+            <li><a href="{% url 'about' %}">About</a></li>
+            <li><a href="https://www.gmail.com">Gmail</a></li>
+
+          </ul>
+
+          <ul class="nav navbar-nav navbar-right">
+            {% if user.is_authenticated %}
+            <li>
+              <a href="{% url 'notices_new' %}" >New Notice</a>
+            </li>
+
+            <li>
+              <a href="{% url 'notices_draft_list' %}">Drafts</a>
+            </li>
+            <li>
+              <a href="{% url 'queries_list' %}">Queries Asked</a>
+            </li>
+            <li>
+              <a href="{% url 'logout' %}" >Log out</a>
+            </li>
+
+            <li>
+              <a >Welcome: {{ user.username }}</a>
+            </li>
+              {% else %}
+              <li><a href="{% url 'queries_new' %}">Ask Query</a></li>
+              <li><a class='nav navbar-right' href="{% url 'login' %}" ><span class="glyphicon glyphicon-user"></span></a></li>
+            {% endif %}
+
+          </ul>
+      </div>
+    </nav>
+            <div class="content container loader">
+                <div class="row">
+                    <div class="col-md-8 col-lg-12">
+                      <div class="notice_notices">
+                        {% block content %}
+                        {% endblock %}
+
+                      </div>
+
+                    </div>
+                </div>
+            </div>
+
+
+<script type="text/javascript" src="{% static 'js/notice.js' %}"></script>
+  </body>
+</html>

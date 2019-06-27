@@ -1,0 +1,12 @@
+{% extends 'notice/base.html' %}
+
+{% block content %}
+<div class="container" style="text-align:center;font-size:1em;">
+  <br><br><br><br>
+<h1><b>Your Query has been been submitted.</b></h1>
+<h2><b>You will get reply to your query within 24 hrs.</b></h2>
+<br><br>
+<a class="btn btn-success" href="{% url 'notices_list' %}"><b>Go back to NOTICES</b></a>
+<a class='btn btn-warning' href="{% url 'queries_new' %}"><b>Add another query.</b></a>
+</div>
+{% endblock %}

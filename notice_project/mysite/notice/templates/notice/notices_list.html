@@ -1,0 +1,20 @@
+{% extends 'notice/base.html' %}
+
+{% block content %}
+<div>
+
+<div class="container-fluid" style="text-align:center;font-size:1em;">
+ <h1><u><b>AKS DEVELOPERS PRIVATE LIMITED</b></u></h1>
+<h2><u><b>NOTICE BULLETIN</b></u></h2>
+  </div>
+    {% for notice in notices_list %}
+        <div class="notice" style="text-align:left;">
+            <h1><a href="{% url 'notices_detail' pk=notice.pk %}"><u><b>{{ notice.title }}</b></u></a></h1>
+            <div class="date">
+                <p>Published on: {{ notice.published_date}}</p>
+            </div>
+            <a href="{% url 'notices_detail' pk=notice.pk %}">Addition Infomation Added: {{ notice.approve_info.count }} </a>
+        </div>
+    {% endfor %}
+</div>
+{% endblock %}

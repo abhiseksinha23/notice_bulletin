@@ -1,0 +1,22 @@
+{% extends 'notice/base.html' %}
+
+
+{% block content %}
+<br><br>
+  <div class="jumbotron" style="background:black; text-align:center; color:#FFA07A;">
+
+    <h2>Please Login: </h2>
+    <h3>(Must be an Admistrator.)</h3><br>
+    {% if form.errors %}
+        <p>Your username and password didn't match.Please try again!</p>
+    {% endif %}
+
+    <form method="POST" action="{% url 'login' %}">
+    {% csrf_token %}
+        {{form.as_p}}
+
+        <input type="submit" class='btn btn-primary' value="Login" />
+        <input type="hidden" name="next" value="{{ next }}" />
+    </form>
+  </div>
+{% endblock %}

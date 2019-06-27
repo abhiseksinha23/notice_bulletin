@@ -1,0 +1,14 @@
+{% extends 'notice/base.html' %}
+
+{% block content %}
+    <h1 style="text-align:center;font-size:2em;"><u><b>Add Notice</b></u></h1>
+<br>
+    <form method="POST" class="notice-form" style="font-size:1em;">
+    {% csrf_token %}
+    {{form.as_p}}
+    <button type="submit" class="save btn btn-success"style="text-align:center;font-size:1em;">Save</button>
+    </form>
+
+    <script>var editor = new MediumEditor('.editable');</script>
+
+{% endblock %}

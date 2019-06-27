@@ -1,0 +1,15 @@
+{% extends 'notice/base.html' %}
+
+{% block content %}
+<div class="centerstage">
+
+
+    {% for query in queries_list %}
+        <div class="notice">
+
+            <h1><a href="{% url 'queries_detail' pk=query.pk %}">{{ query.subject }}</a></h1>
+            <div class="date">
+                <p>Submitted on: {{ query.created_date|date:"D M Y"}}</p>
+    {% endfor %}
+</div>
+{% endblock %}

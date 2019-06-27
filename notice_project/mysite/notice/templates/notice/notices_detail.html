@@ -1,0 +1,51 @@
+{% extends 'notice/base.html' %}
+
+{% block content %}
+
+
+        <h1 class='noticetitle loader'>{{ notices.title }}</h1>
+
+        {% if notices.published_date %}
+            <div class="date noticedate">
+                {{ notices.published_date }}
+            </div>
+
+        {% else %}
+            <a class="btn btn-success" href="{% url 'notices_publish' pk=notices.pk %}">Publish</a>
+        {% endif %}
+
+      <p class='postcontent' style="font-size:1em;">{{ notices.text|safe|linebreaksbr }}</p>
+
+
+      {% if user.is_authenticated %}
+          <a class="btn btn-primary" href="{% url 'notices_edit' pk=notices.pk %}"><span class="glyphicon glyphicon-pencil"></span></a>
+          <a class="btn btn-primary" href="{% url 'notices_remove' pk=notices.pk %}"><span class="glyphicon glyphicon-remove"></span></a>
+      {% endif %}
+
+
+
+  <hr>
+  <a class="btn btn-primary btn-info" href="{% url 'add_info_to_notices' pk=notices.pk %}">Add Information</a>
+  <div class="container">
+
+
+  {% for infos in notices.info.all %}
+  <br>
+      {% if user.is_authenticated or infos.approved_info %}
+
+              {{ infos.created_date }}
+              {% if not infos.approved_info %}
+                  <a class="btn btn-primary" href="{% url 'info_remove' pk=infos.pk %}"><span class="glyphicon glyphicon-remove"></span></a>
+                  <a class="btn btn-primary" href="{% url 'info_approve' pk=infos.pk %}"><span class="glyphicon glyphicon-ok"></span></a>
+              {% endif %}
+
+          <p>{{ infos.text|safe|linebreaks }}</p>
+          <p>Posted by: <strong>{{ infos.author }}</strong></p>
+
+      {% endif %}
+  {% empty %}
+      <p>No addition Information.</p>
+  {% endfor %}
+</div>
+
+{% endblock %}
